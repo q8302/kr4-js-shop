@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-<script src="js/data.js" defer></script>
-<script src="js/main.js" defer></script>
 <body>
 <a class="skip-link" href="#main">Перейти к основному содержимому</a>
 
@@ -103,29 +101,35 @@
 
         <section class="catalog-products">
             <h2>Список товаров</h2>
+            <section class="catalog-controls" aria-label="Управление каталогом">
+                <div class="catalog-controls__group">
+                    <label for="catalog-search">Поиск товара</label>
+                    <input id="catalog-search" class="catalog-controls__input" type="search" placeholder="Введите название товара" autocomplete="off">
+                </div>
+                <div class="catalog-controls__group">
+                    <label for="category-filter">Категория</label>
+                    <select id="category-filter" class="catalog-controls__select">
+                        <option value="all">Все категории</option>
+                        <option value="kitchen">Кухня</option>
+                        <option value="home">Дом</option>
+                        <option value="electronics">Электроника</option>
+                    </select>
+                </div>
+                <div class="catalog-controls__group">
+                    <label for="sort-select">Сортировка</label>
+                    <select id="sort-select" class="catalog-controls__select">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Сначала дешевле</option>
+                        <option value="price-desc">Сначала дороже</option>
+                        <option value="title-asc">По названию А-Я</option>
+                    </select>
+                </div>
+            </section>
 
-            <div class="products-grid">
-                <article class="product-card">
-                    <h3 class="product-card__title">Товар 1</h3>
-                    <p class="product-card__description">Краткое описание учебного товара.</p>
-                    <p class="product-card__price">Цена: 1000 руб.</p>
-                    <a class="button button--primary" href="product.html">Подробнее</a>
-                </article>
+            <p class="catalog-count" aria-live="polite"></p>
+            <p class="catalog-empty" hidden>По выбранным условиям товары не найдены.</p>
 
-                <article class="product-card">
-                    <h3 class="product-card__title">Товар 2</h3>
-                    <p class="product-card__description">Краткое описание учебного товара.</p>
-                    <p class="product-card__price">Цена: 1500 руб.</p>
-                    <a class="button button--primary" href="product.html">Подробнее</a>
-                </article>
-
-                <article class="product-card">
-                    <h3 class="product-card__title">Товар 3</h3>
-                    <p class="product-card__description">Краткое описание учебного товара.</p>
-                    <p class="product-card__price">Цена: 2000 руб.</p>
-                    <a class="button button--primary" href="product.html">Подробнее</a>
-                </article>
-            </div>
+            <div class="products-grid" data-products-container></div>
         </section>
     </section>
 </main>
@@ -134,5 +138,8 @@
     <p>&copy; 2026 Учебный проект. Все права защищены.</p>
     <p>Дисциплина: фронтенд и бэкенд разработка</p>
 </footer>
+
+<script src="js/data.js" defer></script>
+<script src="js/catalog.js" defer></script>
 </body>
-</html>
+</html>]]
