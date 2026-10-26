@@ -54,5 +54,45 @@ const products = [
         discountPercent: 0,
         rating: 4.3,
         isAvailable: false
+    },
+    {
+        id: 7,
+        title: 'Умные часы FitBand',
+        category: 'electronics',
+        price: 12990,
+        discountPercent: 0,
+        rating: 4.2,
+        isAvailable: true,
+        description: 'Фитнес-браслет для отслеживания активности.'
+    },
+    {
+        id: 8,
+        title: 'Настольная лампа DeskLight',
+        category: 'home',
+        price: 3490,
+        discountPercent: 5,
+        rating: 4.3,
+        isAvailable: true,
+        description: 'Лампа с регулировкой яркости для рабочего стола.'
+    },
+    {
+        id: 9,
+        title: 'Блендер TurboMix',
+        category: 'kitchen',
+        price: 8990,
+        discountPercent: 10,
+        rating: 4.6,
+        isAvailable: true,
+        description: 'Блендер для смузи и пюре.'
+    },
+    {
+        id: 10,
+        title: 'Портативный аккумулятор PowerGo',
+        category: 'electronics',
+        price: 2490,
+        discountPercent: 0,
+        rating: 4.1,
+        isAvailable: true,
+        description: 'Внешний аккумулятор 10000 мАч.'
     }
 ];

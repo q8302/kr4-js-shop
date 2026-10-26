@@ -587,3 +587,108 @@ html {
 .form-message:empty {
     display: none;
 }
+
+/* Счётчик корзины */
+.cart-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    padding: 8px 14px;
+    background-color: #0057b8;
+    color: #ffffff;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cart-counter:hover,
+.cart-counter:focus-visible {
+    color: #ffffff;
+    background-color: #003f86;
+    transform: scale(1.05);
+    outline: 3px solid #0057b8;
+    outline-offset: 3px;
+}
+
+.cart-counter:hover .cart-counter__count,
+.cart-counter:focus-visible .cart-counter__count {
+    color: #0057b8;
+    background-color: #ffffff;
+}
+
+.cart-counter__icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.cart-counter__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background-color: #ffffff;
+    color: #0057b8;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Счётчик корзины */
+.cart-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    padding: 8px 16px;
+    background-color: #0057b8;
+    color: #ffffff;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cart-counter:hover,
+.cart-counter:focus-visible {
+    color: #ffffff;
+    background-color: #003f86;
+    transform: scale(1.05);
+    outline: 3px solid #0057b8;
+    outline-offset: 3px;
+}
+
+.cart-counter__icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.cart-counter__label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cart-counter__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background-color: #ffffff;
+    color: #0057b8;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cart-counter:hover .cart-counter__count,
+.cart-counter:focus-visible .cart-counter__count {
+    background-color: #ffffff;
+    color: #003f86;
+}

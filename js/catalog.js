@@ -1,5 +1,5 @@
-// js/catalog.js — КР №4, практика №17
-// Динамический каталог: вывод карточек, поиск, фильтр, сортировка
+// js/catalog.js — КР №4, практика №17–18
+// Динамический каталог + корзина + счётчик
 
 // === Поиск элементов ===
 const productsContainer = document.querySelector('[data-products-container]');
@@ -15,6 +15,15 @@ const catalogState = {
     category: 'all',
     sort: 'default'
 };
+
+// === Счётчик корзины (глобальная функция) ===
+function updateCartCounter() {
+    const cartCountEl = document.querySelector('[data-cart-count]');
+    if (!cartCountEl) return;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountEl.textContent = totalItems;
+}
 
 // === Функции обработки данных ===
 function searchProducts(products, query) {
@@ -124,7 +133,7 @@ function updateCatalog() {
     renderProducts(preparedProducts);
 }
 
-// === Обработчики ===
+// === Обработчики поиска, фильтра, сортировки ===
 if (searchInput) {
     searchInput.addEventListener('input', (event) => {
         catalogState.query = event.target.value;
@@ -146,7 +155,7 @@ if (sortSelect) {
     });
 }
 
-// === Делегирование событий для кнопок ===
+// === Корзина: добавление товара в localStorage ===
 if (productsContainer) {
     productsContainer.addEventListener('click', (event) => {
         const button = event.target.closest('[data-action="add-to-cart"]');
@@ -160,7 +169,27 @@ if (productsContainer) {
             return;
         }
 
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+        } catch (error) {
+            console.warn('Ошибка чтения корзины:', error);
+            cart = [];
+        }
+
+        const existing = cart.find((item) => item.id === selectedProduct.id);
+
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...selectedProduct, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
         console.log(`Товар добавлен в корзину: ${selectedProduct.title}`);
+        console.log('Корзина:', cart);
+
+        updateCartCounter();
     });
 }
 
@@ -168,3 +197,6 @@ if (productsContainer) {
 if (productsContainer) {
     updateCatalog();
 }
+
+// === Обновить счётчик при загрузке ===
+updateCartCounter();
