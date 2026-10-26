@@ -548,3 +548,22 @@ html {
     background-color: var(--color-primary-dark);
     color: var(--color-white);
 }
+
+/* Учебный блок проверки JavaScript */
+.product-output {
+    padding: 16px;
+    overflow-x: auto;
+    color: #f9fafb;
+    background-color: #111827;
+    border-radius: 8px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.js-message {
+    padding: 8px 12px;
+    background-color: #eefaf0;
+    border-left: 4px solid #168a2f;
+    color: #222222;
+    border-radius: 4px;
+}
