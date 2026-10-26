@@ -6,25 +6,42 @@
     <title>Учебный интернет-магазин</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <script src="js/main.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
 <header class="site-header">
     <div class="site-header__inner">
         <a class="site-header__logo" href="index.html">ShopProject</a>
         <nav class="site-nav" aria-label="Основная навигация">
             <ul class="site-nav__list">
-                <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a>    <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-                <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-                <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-                <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" href="catalog.html">Каталог</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" href="product.html">Товар</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" href="order.html">Заявка</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" href="contacts.html">Контакты</a>
+                </li>
             </ul>
         </nav>
     </div>
 </header>
 
 <main id="main">
+    <section class="section js-check" aria-labelledby="js-check-title">
+        <h2 id="js-check-title">Проверка JavaScript</h2>
+        <p class="js-message">JavaScript пока не выполнился.</p>
+        <pre class="product-output"></pre>
+    </section>
+
     <section class="hero">
         <h1>Учебный интернет-магазин</h1>
         <p>Это стартовая страница учебного frontend-проекта. В дальнейшем на её основе будет разработан многостраничный сайт интернет-магазина или каталога услуг.</p>
@@ -148,5 +165,8 @@
     <p>&copy; 2026 Учебный проект. Все права защищены.</p>
     <p>Дисциплина: фронтенд и бэкенд разработка</p>
 </footer>
+
+<script src="js/data.js" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
