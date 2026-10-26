@@ -10,6 +10,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
 <header class="site-header">
     <div class="site-header__inner">
         <a class="site-header__logo" href="index.html">ShopProject</a>
@@ -35,25 +36,28 @@
         <h1>Оформление заявки</h1>
         <p>Заполните форму ниже, и мы свяжемся с вами для подтверждения заказа.</p>
 
-        <form class="order-form" action="#" method="post">
+        <form class="order-form" id="order-form" action="#" method="post" novalidate>
             <div class="order-form__field">
-                <label class="order-form__label" for="page-order-name">Имя</label>
-                <input class="order-form__input" id="page-order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" required>
+                <label class="order-form__label" for="order-name">Имя</label>
+                <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" required>
+                <p class="form-error" id="order-name-error"></p>
             </div>
 
             <div class="order-form__field">
-                <label class="order-form__label" for="page-order-email">E-mail</label>
-                <input class="order-form__input" id="page-order-email" name="email" type="email" placeholder="example@mail.ru" required>
+                <label class="order-form__label" for="order-email">E-mail</label>
+                <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" required>
+                <p class="form-error" id="order-email-error"></p>
             </div>
 
             <div class="order-form__field">
-                <label class="order-form__label" for="page-order-phone">Телефон</label>
-                <input class="order-form__input" id="page-order-phone" name="phone" type="tel" placeholder="+7 (900) 000-00-00" required>
+                <label class="order-form__label" for="order-phone">Телефон</label>
+                <input class="order-form__input" id="order-phone" name="phone" type="tel" placeholder="+7 (900) 000-00-00" required>
+                <p class="form-error" id="order-phone-error"></p>
             </div>
 
             <div class="order-form__field">
-                <label class="order-form__label" for="page-order-topic">Тема заявки</label>
-                <select class="order-form__select" id="page-order-topic" name="topic" required>
+                <label class="order-form__label" for="order-topic">Тема заявки</label>
+                <select class="order-form__select" id="order-topic" name="topic" required>
                     <option value="">Выберите тему</option>
                     <option value="product">Заказ товара</option>
                     <option value="consultation">Консультация</option>
@@ -62,8 +66,8 @@
             </div>
 
             <div class="order-form__field">
-                <label class="order-form__label" for="page-order-comment">Комментарий</label>
-                <textarea class="order-form__textarea" id="page-order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
+                <label class="order-form__label" for="order-comment">Комментарий</label>
+                <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
             </div>
 
             <div class="order-form__field">
@@ -76,6 +80,8 @@
             <div class="order-form__actions">
                 <button class="button button--primary" type="submit">Отправить заявку</button>
             </div>
+
+            <p class="form-message" aria-live="polite"></p>
         </form>
     </section>
 </main>
@@ -84,5 +90,7 @@
     <p>&copy; 2026 Учебный проект. Все права защищены.</p>
     <p>Дисциплина: фронтенд и бэкенд разработка</p>
 </footer>
+
+<script src="js/validation.js" defer></script>
 </body>
 </html>

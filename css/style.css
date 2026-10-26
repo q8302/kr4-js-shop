@@ -567,3 +567,23 @@ html {
     color: #222222;
     border-radius: 4px;
 }
+
+/* Сообщения об ошибках формы */
+.form-error {
+    color: var(--color-danger, #b00020);
+    font-size: 14px;
+    margin: 4px 0 0;
+    min-height: 1em;
+}
+
+.form-message {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #fbe9eb;
+    color: #b00020;
+}
+
+.form-message:empty {
+    display: none;
+}
