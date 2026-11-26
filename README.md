@@ -35,6 +35,7 @@
 - `textContent` вставляет строку как обычный текст.
 
 ## Структура проекта
+```
 kr4-js-shop/
 ├── index.html
 ├── catalog.html
@@ -56,6 +57,7 @@ kr4-js-shop/
 ├── lighthouse/
 ├── README.md
 └── .gitignore
+```
 
 ## Практическая работа №16
 
