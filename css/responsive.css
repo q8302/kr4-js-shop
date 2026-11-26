@@ -1,11 +1,6 @@
 /* ===================================
-   Адаптивные стили для контрольной работы №3
-   Подход: Mobile First
-   Базовые стили — мобильный экран
-   Расширения — через min-width медиазапросы
+   Адаптивные стили — Mobile First
    =================================== */
-
-/* Базовые правила */
 *,
 *::before,
 *::after {
@@ -27,9 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ===================================
-   Адаптивные отступы для секций
-   =================================== */
 .container,
 .section {
     width: min(100% - 32px, 1200px);
@@ -40,9 +32,7 @@ body {
     padding-block: clamp(24px, 5vw, 64px);
 }
 
-/* ===================================
-   Навигация: на мобильном — колонка
-   =================================== */
+/* Навигация */
 .site-nav__list {
     display: flex;
     flex-direction: column;
@@ -67,9 +57,7 @@ body {
     }
 }
 
-/* ===================================
-   Sticky-шапка: только на планшете и выше
-   =================================== */
+/* Sticky-шапка */
 .site-header {
     position: static;
 }
@@ -82,9 +70,7 @@ body {
     }
 }
 
-/* ===================================
-   Hero-блок: одна колонка на мобильном, две на desktop
-   =================================== */
+/* Hero */
 .hero {
     display: grid;
     gap: var(--space-lg, 24px);
@@ -106,45 +92,27 @@ body {
     }
 }
 
-/* ===================================
-   Сетка карточек: 1 → 2 → 3 → 4 колонки
-   =================================== */
+
 .products-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md, 16px);
-}
-
-.product-card {
-    min-width: 0;
-}
-
-.product-card__title,
-.product-card__description {
-    overflow-wrap: anywhere;
+    grid-template-columns: 1fr; /* На телефонах 1 в ряд */
+    gap: 24px;
+    width: 100%; /* Занимаем всю ширину */
 }
 
 @media (min-width: 640px) {
     .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* На планшетах 2 в ряд */
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
     .products-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr); /* На компьютерах строго 3 в ряд */
     }
 }
 
-@media (min-width: 1280px) {
-    .products-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
-
-/* ===================================
-   Каталог: фильтры на мобильном — перед товарами
-   =================================== */
+/* Каталог */
 .catalog-layout {
     display: grid;
     gap: var(--space-lg, 24px);
@@ -167,20 +135,17 @@ body {
     }
 }
 
-/* ===================================
-   Изображения карточек
-   =================================== */
+/* Изображения карточек */
 .product-card__image {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius-md, 8px);
+    background-color: var(--color-surface-accent, #ffe3ee);
 }
 
-/* ===================================
-   Форма заявки: 1 колонка → 2 колонки
-   =================================== */
+/* Форма */
 .order-form {
     display: grid;
     gap: var(--space-md, 16px);
@@ -215,9 +180,7 @@ body {
     }
 }
 
-/* ===================================
-   Таблица характеристик: горизонтальный скролл
-   =================================== */
+/* Таблица */
 .table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -229,18 +192,14 @@ body {
     border-collapse: collapse;
 }
 
-/* ===================================
-   Модальное окно на мобильном
-   =================================== */
+/* Модальное окно */
 .order-dialog {
     width: min(100% - 32px, 560px);
     max-height: 90vh;
     overflow-y: auto;
 }
 
-/* ===================================
-   Кнопка «Наверх»: фиксированная
-   =================================== */
+/* Кнопка «Наверх» */
 .scroll-top {
     position: fixed;
     right: 16px;
@@ -254,6 +213,7 @@ body {
         bottom: 32px;
     }
 }
+
 /* Skip-link */
 .skip-link {
     position: absolute;
@@ -262,7 +222,7 @@ body {
     z-index: 1000;
     padding: 8px 12px;
     color: #ffffff;
-    background-color: #111111;
+    background-color: var(--color-primary-dark, #a61e4d);
     border-radius: 6px;
     text-decoration: none;
 }

@@ -1,87 +1,104 @@
-// js/validation.js — КР №4, практика №17
-// Базовая валидация формы заявки
+// js/validation.js — Строгая валидация формы
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('order-form');
+    if (!form) return;
 
-const orderForm = document.querySelector('.order-form');
+    const nameInput = document.getElementById('order-name');
+    const emailInput = document.getElementById('order-email');
+    const phoneInput = document.getElementById('order-phone');
+    const agreementInput = form.querySelector('input[name="agreement"]');
+    const commentInput = document.getElementById('order-comment');
+    const messageBox = form.querySelector('.form-message');
 
-if (orderForm) {
-    const nameInput = orderForm.querySelector('#order-name');
-    const emailInput = orderForm.querySelector('#order-email');
-    const phoneInput = orderForm.querySelector('#order-phone');
-
-    const nameError = orderForm.querySelector('#order-name-error');
-    const emailError = orderForm.querySelector('#order-email-error');
-    const phoneError = orderForm.querySelector('#order-phone-error');
-
-    const formMessage = orderForm.querySelector('.form-message');
-
-    function showError(input, errorElement, message) {
-        errorElement.textContent = message;
+    // Вспомогательная функция для вывода ошибки
+    function showError(input, errorId, text) {
         input.setAttribute('aria-invalid', 'true');
-        input.setAttribute('aria-describedby', errorElement.id);
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+            errorElement.innerHTML = `⚠️ ${text}`; // Добавляем иконку
+        }
     }
 
-    function clearError(input, errorElement) {
-        errorElement.textContent = '';
+    // Вспомогательная функция для сброса ошибки
+    function clearError(input, errorId) {
         input.removeAttribute('aria-invalid');
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+            errorElement.textContent = '';
+        }
     }
 
-    function validateName() {
-        const value = nameInput.value.trim();
-        if (value.length < 2) {
-            showError(nameInput, nameError, 'Введите имя не короче 2 символов.');
-            return false;
-        }
-        clearError(nameInput, nameError);
-        return true;
-    }
+    // Очищаем ошибки, как только пользователь начинает печатать
+    if (nameInput) nameInput.addEventListener('input', () => clearError(nameInput, 'order-name-error'));
+    if (emailInput) emailInput.addEventListener('input', () => clearError(emailInput, 'order-email-error'));
+    if (phoneInput) phoneInput.addEventListener('input', () => clearError(phoneInput, 'order-phone-error'));
 
-    function validateEmail() {
-        const value = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(value)) {
-            showError(emailInput, emailError, 'Введите корректный e-mail.');
-            return false;
-        }
-        clearError(emailInput, emailError);
-        return true;
-    }
+    // Основная проверка при отправке
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Блокируем отправку
+        let isValid = true;
 
-    function validatePhone() {
-        const value = phoneInput.value.trim();
-        const phonePattern = /^[0-9+()\s-]+$/;
-        if (value.length < 6 || !phonePattern.test(value)) {
-            showError(phoneInput, phoneError, 'Введите корректный номер телефона.');
-            return false;
-        }
-        clearError(phoneInput, phoneError);
-        return true;
-    }
-
-    orderForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const isNameValid = validateName();
-        const isEmailValid = validateEmail();
-        const isPhoneValid = validatePhone();
-        const isFormValid = isNameValid && isEmailValid && isPhoneValid;
-
-        if (!isFormValid) {
-            formMessage.textContent = 'Проверьте поля формы.';
-            return;
+        // Скрываем старое сообщение об успехе
+        if (messageBox) {
+            messageBox.style.display = 'none';
+            messageBox.textContent = '';
+            messageBox.style.backgroundColor = '';
+            messageBox.style.color = '';
         }
 
-        const requestData = {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            phone: phoneInput.value.trim()
-        };
+        // 1. Проверка Имени (минимум 2 буквы)
+        const nameValue = nameInput.value.trim();
+        if (nameValue.length < 2 || /\d/.test(nameValue)) {
+            showError(nameInput, 'order-name-error', 'Имя должно содержать только буквы (мин. 2)');
+            isValid = false;
+        }
 
-        console.table(requestData);
-        formMessage.textContent = 'Заявка подготовлена. Данные выведены в консоль.';
-        orderForm.reset();
+        // 2. Проверка Email (строгая регулярка)
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+            showError(emailInput, 'order-email-error', 'Введите корректный E-mail (name@mail.ru)');
+            isValid = false;
+        }
+
+        // 3. Проверка Телефона (строго: +7 XXX XXX-XX-XX или 8XXX...)
+        const phoneValue = phoneInput.value.trim();
+        // Регулярка: допускает +7 или 8, код оператора, и 7 цифр
+        const phoneRegex = /^(\+7|8)\s?\(?\d{3}\)?\s?\d{3}-?\d{2}-?\d{2}$/;
+        if (!phoneRegex.test(phoneValue)) {
+            showError(phoneInput, 'order-phone-error', 'Формат: +7 (900) 000-00-00 или 89000000000');
+            isValid = false;
+        }
+
+        // 4. Проверка чекбокса
+        if (!agreementInput.checked) {
+            if (messageBox) {
+                messageBox.textContent = '⚠️ Необходимо согласие на обработку данных';
+                messageBox.style.display = 'block';
+                messageBox.style.color = 'var(--color-danger)';
+                messageBox.style.backgroundColor = '#fde8ef';
+            }
+            isValid = false;
+        }
+
+        // Если всё ОК
+        if (isValid) {
+            if (messageBox) {
+                messageBox.textContent = '✅ Спасибо! Ваша заявка успешно отправлена. Мы скоро свяжемся с вами.';
+                messageBox.style.display = 'block';
+                messageBox.style.color = 'var(--color-success)';
+                messageBox.style.backgroundColor = 'var(--color-success-bg)';
+            }
+            form.reset(); // Очищаем форму
+
+            // Скрываем сообщение через 5 секунд
+            setTimeout(() => {
+                if (messageBox) messageBox.style.display = 'none';
+            }, 5000);
+        } else {
+            // Если форма не прошла, делаем анимацию "тряски" (через CSS)
+            form.classList.add('shake');
+            setTimeout(() => form.classList.remove('shake'), 400);
+        }
     });
-
-    nameInput.addEventListener('input', validateName);
-    emailInput.addEventListener('input', validateEmail);
-    phoneInput.addEventListener('input', validatePhone);
-}
+});

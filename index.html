@@ -12,7 +12,7 @@
 
 <header class="site-header">
     <div class="site-header__inner">
-        <a class="site-header__logo" href="index.html">ShopProject</a>
+        <a class="site-header__logo" href="index.html">Zyza Shop <span>🐰</span></a>
         <nav class="site-nav" aria-label="Основная навигация">
             <ul class="site-nav__list">
                 <li class="site-nav__item">
@@ -20,9 +20,6 @@
                 </li>
                 <li class="site-nav__item">
                     <a class="site-nav__link" href="catalog.html">Каталог</a>
-                </li>
-                <li class="site-nav__item">
-                    <a class="site-nav__link" href="product.html">Товар</a>
                 </li>
                 <li class="site-nav__item">
                     <a class="site-nav__link" href="order.html">Заявка</a>
@@ -35,71 +32,130 @@
     </div>
 </header>
 
-<main id="main">
-    <section class="section js-check" aria-labelledby="js-check-title">
-        <h2 id="js-check-title">Проверка JavaScript</h2>
-        <p class="js-message">JavaScript пока не выполнился.</p>
-        <pre class="product-output"></pre>
-    </section>
 
-    <section class="hero">
-        <h1>Учебный интернет-магазин</h1>
-        <p>Это стартовая страница учебного frontend-проекта. В дальнейшем на её основе будет разработан многостраничный сайт интернет-магазина или каталога услуг.</p>
-        <a class="button button--primary" href="#popular">Перейти к товарам</a>
-    </section>
 
-    <section class="section" id="advantages">
-        <h2>Преимущества проекта</h2>
-        <ul class="advantages-list">
-            <li>понятная HTML-структура;</li>
-            <li>семантические блоки страницы;</li>
-            <li>подключение внешнего CSS-файла;</li>
-            <li>подготовка к разработке многостраничного сайта.</li>
-        </ul>
-    </section>
+<section class="hero">
+    <h1>Магазин одежды «Zyza Shop»</h1>
+    <p>Добро пожаловать в наш магазин! Здесь вы найдете стильную и удобную одежду для повседневной жизни. Мы предлагаем качественные вещи, которые подчеркнут вашу индивидуальность и подарят комфорт.</p>
+    <a class="button button--primary" href="catalog.html">Перейти в каталог</a>
+</section>
 
-    <section class="section" id="popular">
-        <h2>Популярные товары</h2>
+<section class="section" id="advantages">
+    <h2>Преимущества нашей одежды</h2>
+    <ul class="advantages-list">
+        <li>Только натуральные и качественные ткани;</li>
+        <li>Современный дизайн и идеальная посадка по фигуре;</li>
+        <li>Устойчивость к износу и легкий уход;</li>
+        <li>Доступные цены и регулярные скидки для клиентов.</li>
+    </ul>
+</section>
 
-        <div class="products-grid">
-            <article class="product-card">
-                <span class="product-card__badge">Скидка</span>
-                <h3 class="product-card__title">Товар 1</h3>
-                <p class="product-card__description">Краткое описание учебного товара.</p>
-                <p class="product-card__price">Цена: 1000 руб.</p>
-                <button class="button button--primary product-card__button" type="button" data-product="Товар 1">
-                    Заказать
-                </button>
-            </article>
+<div class="products-grid">
+    <article class="product-card">
+        <span class="product-card__badge">Скидка</span>
+        <a href="product.html?id=1" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/3d/5a/05/3d5a0506f664d0d6273f46514a3b21f8.jpg" alt="Платье миди">
 
-            <article class="product-card">
-                <h3 class="product-card__title">Товар 2</h3>
-                <p class="product-card__description">Краткое описание учебного товара.</p>
-                <p class="product-card__price">Цена: 1500 руб.</p>
-                <button class="button button--primary product-card__button" type="button" data-product="Товар 2">
-                    Заказать
-                </button>
-            </article>
+        <h3 class="product-card__title">Лонгслив с глубоким вырезом</h3>
+        </a>
+        <p class="product-card__description">Стильная кофта в морскую полоску. Идеально подходит для прохладных вечеров и прогулок.</p>
+        <p class="product-card__price">Цена: 2700 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Лонгслив с глубоким вырезом">Заказать</button>
+    </article>
 
-            <article class="product-card">
-                <h3 class="product-card__title">Товар 3</h3>
-                <p class="product-card__description">Краткое описание учебного товара.</p>
-                <p class="product-card__price">Цена: 2000 руб.</p>
-                <button class="button button--primary product-card__button" type="button" data-product="Товар 3">
-                    Заказать
-                </button>
-            </article>
-        </div>
-    </section>
+    <article class="product-card">
+        <a href="product.html?id=2" style="text-decoration: none; color: inherit;">
+            <img class="product-card__image" src="https://i.pinimg.com/736x/44/1a/65/441a6545344ebb94fd4d658eaed39079.jpg" alt="Джинсы клеш">
+            <h3 class="product-card__title">Джинсы клеш</h3>
+        </a>
+        <p class="product-card__description">Классические джинсы, которые идеально сидят по фигуре. Подходят под любой стиль.</p>
+        <p class="product-card__price">Цена: 4000 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Джинсы клеш">Заказать</button>
+    </article>
 
-    <aside class="aside-info">
-        <h2>Информация для студентов</h2>
-        <p>
-            На следующих практических занятиях этот проект будет расширяться:
-            появятся формы, модальное окно, дополнительные страницы,
-            Flex/Grid, БЭМ-структура и адаптивная версия сайта.
-        </p>
-    </aside>
+    <article class="product-card">
+        <a href="product.html?id=3" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/95/00/9e/95009e199695715c8337fee26b626e50.jpg" alt="Платье миди">
+        <h3 class="product-card__title">Джинсовая юбка</h3>
+        </a>
+        <p class="product-card__description"> Черная юбка с металлическими деталями.</p>
+        <p class="product-card__price">Цена: 2800 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Джинсовая юбка">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=4" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/2a/89/d1/2a89d1e4309cf859bc482c28c0673e2a.jpg" alt="Платье миди">
+        <h3 class="product-card__title">Кожаная сумка</h3>
+        </a>
+        <p class="product-card__description">Вместительная сумка из качественного кожзаменителя. Практичная фурнитура и удобная ручка.</p>
+        <p class="product-card__price">Цена: 2200 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Юбка в клетку">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=5" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/41/07/60/4107603ac5f48317a7b9451e6f840353.jpg" alt="Платье миди">
+        <span class="product-card__badge">Новинка</span>
+        <h3 class="product-card__title">Сумка кросс-боди</h3>
+        </a>
+        <p class="product-card__description">Удобная сумка через плечо. Идеальна для ежедневного ношения и поездок.</p>
+        <p class="product-card__price">Цена: 1900 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Белая рубашка">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=6" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/1200x/1d/09/47/1d0947ab97d2355fcbc59749663b752e.jpg" alt="Платье миди">
+        <h3 class="product-card__title">Зимняя куртка</h3>
+        </a>
+        <p class="product-card__description">Теплая куртка с объемным мехом. Защитит от холода и ветра в самую суровую погоду.</p>
+        <p class="product-card__price">Цена: 5000руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Брюки-палаццо">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=7" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/a6/bf/8a/a6bf8a1576055320e38208a1e3a6574d.jpg" alt="Платье миди">
+        <h3 class="product-card__title">Pusheen</h3>
+        </a>
+        <p class="product-card__description">Милый и очень мягкий кот. Станет отличным подарком для себя или близких.</p>
+        <p class="product-card__price">Цена: 1000 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Вязаный кардиган">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=8" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/736x/94/ec/51/94ec51e977c5372161fb79875540ff80.jpg" alt="Платье миди">
+        <span class="product-card__badge">Хит</span>
+        <h3 class="product-card__title">Зип-худи</h3>
+        </a>
+        <p class="product-card__description">Уютное худи с капюшоном. Отлично согревает и подходит для повседневной носки</p>
+        <p class="product-card__price">Цена: 2500 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Спортивный костюм">Заказать</button>
+    </article>
+
+    <article class="product-card">
+        <a href="product.html?id=9" style="text-decoration: none; color: inherit;">
+        <img class="product-card__image" src="https://i.pinimg.com/1200x/66/d1/9f/66d19f9fc258ed2360df7b6230d30eff.jpg" alt="Платье миди">
+        <h3 class="product-card__title">Укороченные джинсовые шорты</h3>
+        </a>
+        <p class="product-card__description">Стильные джинсовые шорты с потертостями. Идеальная вещь для летнего гардероба.</p>
+        <p class="product-card__price">Цена: 2000 руб.</p>
+        <button class="button button--primary product-card__button" type="button" data-product="Тренч">Заказать</button>
+    </article>
+
+</div>
+
+<aside class="aside-info">
+    <h2>О нашем бренде</h2>
+    <p>
+        «Zyza Shop» — это место, где стиль встречается с комфортом.
+        Мы тщательно отбираем каждую вещь, чтобы вы чувствовали себя уверенно
+        в любой ситуации. Подписывайтесь на наши соцсети, чтобы первыми
+        узнавать о новинках и сезонных распродажах!
+    </p>
+</aside>
 </main>
 
 <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">

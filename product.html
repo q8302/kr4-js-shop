@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Карточка товара учебного интернет-магазина.">
-    <title>Товар 1 — Учебный интернет-магазин</title>
+    <title>Товар — Zyza Shop</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
 <header class="site-header">
     <div class="site-header__inner">
-        <a class="site-header__logo" href="index.html">ShopProject</a>
+        <a class="site-header__logo" href="index.html">Zyza Shop <span>🐰</span></a>
         <nav class="site-nav" aria-label="Основная навигация">
             <ul class="site-nav__list">
                 <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
                 <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-                <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="product.html" aria-current="page">Товар</a>
                 <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
                 <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
             </ul>
         </nav>
+        <a class="cart-counter" href="cart.html">
+            <span class="cart-counter__icon" aria-hidden="true">🛒</span>
+            <span class="cart-counter__label">Корзина</span>
+            <span class="cart-counter__count" data-cart-count>0</span>
+        </a>
     </div>
 </header>
 
@@ -29,83 +33,60 @@
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
         <a class="breadcrumbs__link" href="index.html">Главная</a>
         <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
-        <span class="breadcrumbs__current">Товар 1</span>
+        <span class="breadcrumbs__current" id="breadcrumb-title">Загрузка...</span>
     </nav>
 
     <section class="section">
-        <h1>Товар 1</h1>
-
-        <div class="product-detail">
-            <div class="product-detail__image">
-                <img src="images/placeholder.png" alt="Изображение товара" onerror="this.style.display='none'; this.parentElement.innerHTML='Изображение товара';">
+        <div class="product-detail" style="background: #fff; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px rgba(214, 51, 108, 0.08);">
+            <div class="product-detail__image" style="background: #fdf0f5; padding: 20px; border-radius: 12px;">
+                <img id="product-image" src="" alt="Изображение товара" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px; max-height: 500px;">
             </div>
 
             <div class="product-detail__info">
-                <span class="product-detail__badge">Скидка</span>
-                <p class="product-detail__price">Цена: 1000 руб.</p>
-                <p class="product-detail__description">
-                    Краткое описание учебного товара. Это самостоятельный блок со всей основной информацией о товаре.
+                <span class="product-detail__badge" id="product-badge" style="display: none;">Скидка</span>
+                <h1 id="product-title" style="font-size: 32px; margin: 0 0 16px;">Загрузка...</h1>
+                <p class="product-detail__price" id="product-price" style="font-size: 28px; color: var(--color-primary); font-weight: 800; margin-bottom: 24px;">
+                    Цена: ...
                 </p>
-                <a class="button button--primary" href="order.html">Оформить заявку</a>
+                <p class="product-detail__description" id="product-description" style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 32px;">
+                    ...
+                </p>
+                <a class="button button--primary" href="#" id="order-link" style="width: 100%; text-align: center; padding: 16px; font-size: 18px;">
+                    Оформить заявку
+                </a>
             </div>
         </div>
     </section>
 
     <section class="section">
-        <h2>Характеристики товара</h2>
-        <div class="table-wrapper">
-        <table class="product-table">
-            <caption>Основные характеристики</caption>
-            <thead>
-            <tr>
-                <th>Параметр</th>
-                <th>Значение</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Категория</td>
-                <td>Учебный товар</td>
-            </tr>
-            <tr>
-                <td>Цена</td>
-                <td>1000 руб.</td>
-            </tr>
-            <tr>
-                <td>Наличие</td>
-                <td>В наличии</td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Отзывы покупателей</h2>
-
-        <div class="reviews">
-            <article class="review-card">
-                <h3 class="review-card__title">Иван Иванов</h3>
-                <p class="review-card__text">
-                    Отличный учебный товар! Всё понравилось, рекомендую.
-                </p>
-            </article>
-
-            <article class="review-card">
-                <h3 class="review-card__title">Мария Петрова</h3>
-                <p class="review-card__text">
-                    Быстрая доставка, товар соответствует описанию.
-                </p>
-            </article>
+        <h2 style="margin-bottom: 24px;">Характеристики товара</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div style="background: #fff; border: 1px solid var(--color-border); padding: 20px; border-radius: 12px; text-align: center;">
+                <span style="display: block; color: #888; font-size: 14px; margin-bottom: 8px;">Категория</span>
+                <strong id="product-category" style="font-size: 18px; color: var(--color-primary-dark);">...</strong>
+            </div>
+            <div style="background: #fff; border: 1px solid var(--color-border); padding: 20px; border-radius: 12px; text-align: center;">
+                <span style="display: block; color: #888; font-size: 14px; margin-bottom: 8px;">Состав</span>
+                <strong style="font-size: 18px; color: var(--color-primary-dark);">100% хлопок</strong>
+            </div>
+            <div style="background: #fff; border: 1px solid var(--color-border); padding: 20px; border-radius: 12px; text-align: center;">
+                <span style="display: block; color: #888; font-size: 14px; margin-bottom: 8px;">Размеры</span>
+                <strong style="font-size: 18px; color: var(--color-primary-dark);">S, M, L</strong>
+            </div>
+            <div style="background: #fff; border: 1px solid var(--color-border); padding: 20px; border-radius: 12px; text-align: center;">
+                <span style="display: block; color: #888; font-size: 14px; margin-bottom: 8px;">Наличие</span>
+                <strong id="product-availability" style="font-size: 18px; color: var(--color-primary-dark);">...</strong>
+            </div>
         </div>
     </section>
 </main>
 
 <footer class="site-footer" id="contacts">
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>&copy; 2026 Zyza Shop. Все права защищены.</p>
     <p>Дисциплина: фронтенд и бэкенд разработка</p>
 </footer>
 
-<a class="scroll-top" href="#" aria-label="Наверх">↑</a>
+<script src="js/data.js" defer></script>
+<script src="js/product.js" defer></script>
 </body>
 </html>

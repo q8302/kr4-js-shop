@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — Zyza Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+<header class="site-header">
+    <div class="site-header__inner">
+        <a class="site-header__logo" href="index.html">Zyza Shop <span>🐰</span></a>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <!-- Ссылка на корзину ведет на эту же страницу -->
+        <a class="cart-counter" href="cart.html">
+            <span class="cart-counter__icon" aria-hidden="true">🛒</span>
+            <span class="cart-counter__label">Корзина</span>
+            <span class="cart-counter__count" data-cart-count>0</span>
+        </a>
+    </div>
+</header>
+
+<main id="main">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a class="breadcrumbs__link" href="index.html">Главная</a>
+        <span class="breadcrumbs__current">Корзина</span>
+    </nav>
+
+    <section class="section">
+        <h1 style="margin-bottom: 24px;">Ваша корзина</h1>
+
+        <!-- Контейнер для товаров из корзины -->
+        <div id="cart-items-container" style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;">
+            <!-- Сюда JS будет вставлять товары -->
+        </div>
+
+        <!-- Блок с итоговой суммой (появится, если есть товары) -->
+        <div id="cart-summary" style="display: none; max-width: 800px; margin: 32px auto 0; background: #fff; padding: 24px; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 4px 15px rgba(214, 51, 108, 0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 20px; color: var(--color-muted);">Итого:</span>
+                <span id="cart-total-price" style="font-size: 28px; font-weight: 800; color: var(--color-primary);">0 руб.</span>
+            </div>
+            <div style="display: flex; gap: 16px;">
+                <button id="clear-cart-btn" class="button button--secondary" style="flex: 1; padding: 14px;">Очистить корзину</button>
+                <a href="order.html" class="button button--primary" style="flex: 2; padding: 14px; text-align: center;">Перейти к оформлению</a>
+            </div>
+        </div>
+
+        <!-- Заглушка, если корзина пуста -->
+        <div id="cart-empty" style="text-align: center; padding: 60px 20px; display: none;">
+            <div style="font-size: 80px; margin-bottom: 20px;">🛒</div>
+            <h2 style="color: var(--color-primary-dark);">Ваша корзина пуста</h2>
+            <p style="color: var(--color-muted); margin-bottom: 24px;">Добавьте товары из каталога, чтобы сделать заказ.</p>
+            <a href="catalog.html" class="button button--primary" style="padding: 12px 32px;">Перейти в каталог</a>
+        </div>
+</main>
+
+<footer class="site-footer" id="contacts">
+    <p>&copy; 2026 Zyza Shop. Все права защищены.</p>
+    <p>Дисциплина: фронтенд и бэкенд разработка</p>
+</footer>
+
+<a class="scroll-top" href="#" aria-label="Наверх">↑</a>
+
+<script src="js/data.js" defer></script>
+<script src="js/catalog.js" defer></script>
+<script src="js/cart.js" defer></script>
+</body>
+</html>

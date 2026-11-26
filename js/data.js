@@ -1,98 +1,87 @@
-// js/data.js — массив товаров для КР №4
-
 const products = [
     {
         id: 1,
-        title: 'Кофемашина Barista Home',
-        category: 'kitchen',
-        price: 19990,
-        discountPercent: 10,
-        rating: 4.7,
-        isAvailable: true
+        title: "Лонгслив с глубоким вырезом",
+        description: "Стильная кофта в морскую полоску. Идеально подходит для прохладных вечеров и прогулок.",
+        price: 2700,
+        category: "clothing",
+        isAvailable: true,
+        image: "https://i.pinimg.com/736x/3d/5a/05/3d5a0506f664d0d6273f46514a3b21f8.jpg",
+        badge: "Скидка"
     },
     {
         id: 2,
-        title: 'Электрический чайник SmartHeat',
-        category: 'kitchen',
-        price: 4990,
-        discountPercent: 0,
-        rating: 4.5,
-        isAvailable: true
+        title: "Джинсы клеш",
+        description: "Классические джинсы, которые идеально сидят по фигуре. Подходят под любой стиль.",
+        price: 4000,
+        category: "clothing",
+        isAvailable: true,
+        image: "https://i.pinimg.com/736x/44/1a/65/441a6545344ebb94fd4d658eaed39079.jpg"
     },
     {
         id: 3,
-        title: 'Робот-пылесос CleanBot',
-        category: 'home',
-        price: 24990,
-        discountPercent: 15,
-        rating: 4.8,
-        isAvailable: false
+        title: "Джинсовая юбка",
+        description: "Черная юбка с металлическими деталями.",
+        price: 2800,
+        category: "clothing",
+        isAvailable: true,
+        image: "https://i.pinimg.com/736x/95/00/9e/95009e199695715c8337fee26b626e50.jpg"
     },
     {
         id: 4,
-        title: 'Умная лампа LightSpace',
-        category: 'home',
-        price: 2990,
-        discountPercent: 5,
-        rating: 4.4,
-        isAvailable: true
+        title: "Кожаная сумка",
+        description: "Вместительная сумка из качественного кожзаменителя. Практичная фурнитура и удобная ручка.",
+        price: 2200,
+        category: "accessories",
+        isAvailable: true,
+        image: "https://i.pinimg.com/736x/2a/89/d1/2a89d1e4309cf859bc482c28c0673e2a.jpg"
     },
     {
         id: 5,
-        title: 'Наушники SoundPro',
-        category: 'electronics',
-        price: 7990,
-        discountPercent: 10,
-        rating: 4.6,
-        isAvailable: true
+        title: "Сумка кросс-боди",
+        description: "Удобная сумка через плечо. Идеальна для ежедневного ношения и поездок.",
+        price: 1900,
+        category: "accessories",
+        isAvailable: true,
+        image: "https://i.pinimg.com/736x/41/07/60/4107603ac5f48317a7b9451e6f840353.jpg",
+        badge: "Новинка"
     },
     {
         id: 6,
-        title: 'Портативная колонка BassBox',
-        category: 'electronics',
-        price: 5990,
-        discountPercent: 0,
-        rating: 4.3,
-        isAvailable: false
+        title: "Зимняя куртка",
+        description: "Теплая куртка с объемным мехом. Защитит от холода и ветра в самую суровую погоду.",
+        price: 5000,
+        category: "outerwear",
+        isAvailable: true,
+        image: "https://i.pinimg.com/1200x/1d/09/47/1d0947ab97d2355fcbc59749663b752e.jpg"
     },
     {
         id: 7,
-        title: 'Умные часы FitBand',
-        category: 'electronics',
-        price: 12990,
-        discountPercent: 0,
-        rating: 4.2,
+        title: "Pusheen",
+        description: "Милый и очень мягкий кот. Станет отличным подарком для себя или близких.",
+        price: 1000,
+        category: "toys",
         isAvailable: true,
-        description: 'Фитнес-браслет для отслеживания активности.'
+        image: "https://i.pinimg.com/736x/a6/bf/8a/a6bf8a1576055320e38208a1e3a6574d.jpg"
     },
     {
         id: 8,
-        title: 'Настольная лампа DeskLight',
-        category: 'home',
-        price: 3490,
-        discountPercent: 5,
-        rating: 4.3,
+        title: "Зип-худи",
+        description: "Уютное худи с капюшоном. Отлично согревает и подходит для повседневной носки",
+        price: 2500,
+        category: "clothing",
         isAvailable: true,
-        description: 'Лампа с регулировкой яркости для рабочего стола.'
+        image: "https://i.pinimg.com/736x/94/ec/51/94ec51e977c5372161fb79875540ff80.jpg",
+        badge: "Хит"
     },
     {
         id: 9,
-        title: 'Блендер TurboMix',
-        category: 'kitchen',
-        price: 8990,
-        discountPercent: 10,
-        rating: 4.6,
-        isAvailable: true,
-        description: 'Блендер для смузи и пюре.'
+        title: "Укороченные джинсовые шорты",
+        description: "Стильные джинсовые шорты с потертостями. Идеальная вещь для летнего гардероба.",
+        price: 2000,
+        category: "clothing",
+        isAvailable: false,
+        image: "https://i.pinimg.com/1200x/66/d1/9f/66d19f9fc258ed2360df7b6230d30eff.jpg"
     },
-    {
-        id: 10,
-        title: 'Портативный аккумулятор PowerGo',
-        category: 'electronics',
-        price: 2490,
-        discountPercent: 0,
-        rating: 4.1,
-        isAvailable: true,
-        description: 'Внешний аккумулятор 10000 мАч.'
-    }
+
 ];
