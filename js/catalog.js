@@ -1,7 +1,4 @@
-// js/catalog.js — КР №4, практика №17–18
-// Динамический каталог + корзина + счётчик
 
-// === Поиск элементов ===
 const productsContainer = document.querySelector('[data-products-container]');
 const searchInput = document.querySelector('#catalog-search');
 const categoryFilter = document.querySelector('#category-filter');
@@ -9,14 +6,16 @@ const sortSelect = document.querySelector('#sort-select');
 const catalogCount = document.querySelector('.catalog-count');
 const catalogEmpty = document.querySelector('.catalog-empty');
 
-// === Состояние каталога ===
+
 const catalogState = {
     query: '',
     category: 'all',
-    sort: 'default'
+    sort: 'default',
+    badges: [],
+    priceMin: 0,
+    priceMax: Infinity
 };
 
-// === Счётчик корзины (глобальная функция) ===
 function updateCartCounter() {
     const cartCountEl = document.querySelector('[data-cart-count]');
     if (!cartCountEl) return;
@@ -25,7 +24,6 @@ function updateCartCounter() {
     cartCountEl.textContent = totalItems;
 }
 
-// === Функции обработки данных ===
 function searchProducts(products, query) {
     const normalizedQuery = query.trim().toLowerCase();
     if (normalizedQuery === '') {
@@ -54,28 +52,40 @@ function sortProducts(products, sortType) {
     if (sortType === 'title-asc') {
         return productsCopy.sort((a, b) => a.title.localeCompare(b.title));
     }
-    return productsCopy;
+    return productsCopy; // По умолчанию
 }
 
 function getPreparedProducts(products, state) {
     let result = [...products];
+
+    // 1. Поиск
     result = searchProducts(result, state.query);
+
+    // 2. Выпадающий список категорий
     result = filterProductsByCategory(result, state.category);
+
+    // 3. Галочки (Хит / Скидка)
+    if (state.badges.length > 0 && !state.badges.includes('all')) {
+        result = result.filter(p => p.badge && state.badges.includes(p.badge));
+    }
+
+    // 4. Цена
+    result = result.filter(p => p.price >= state.priceMin && p.price <= state.priceMax);
+
+    // 5. Сортировка
     result = sortProducts(result, state.sort);
+
     return result;
 }
 
-// === Форматирование цены ===
 function formatPrice(price) {
     return `${price.toLocaleString('ru-RU')} руб.`;
 }
 
-// === Создание карточки ===
 function createProductCard(product) {
     const card = document.createElement('article');
     card.classList.add('product-card');
 
-    // Получаем текущую корзину
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -91,7 +101,6 @@ function createProductCard(product) {
         card.appendChild(badge);
     }
 
-    // Картинка
     const img = document.createElement('img');
     img.classList.add('product-card__image');
     img.src = product.image || 'images/placeholder.svg';
@@ -100,7 +109,6 @@ function createProductCard(product) {
     img.addEventListener('click', () => { window.location.href = `product.html?id=${product.id}`; });
     card.appendChild(img);
 
-    // Заголовок
     const title = document.createElement('h3');
     title.classList.add('product-card__title');
     title.textContent = product.title;
@@ -108,27 +116,23 @@ function createProductCard(product) {
     title.addEventListener('click', () => { window.location.href = `product.html?id=${product.id}`; });
     card.appendChild(title);
 
-    // Описание
     const description = document.createElement('p');
     description.classList.add('product-card__description');
     description.textContent = product.description || 'Краткое описание товара.';
     card.appendChild(description);
 
-    // Цена
     const price = document.createElement('p');
     price.classList.add('product-card__price');
     price.textContent = formatPrice(product.price);
     card.appendChild(price);
 
-    // Статус
     const status = document.createElement('p');
     status.classList.add('product-card__status');
     status.textContent = product.isAvailable ? 'В наличии' : 'Нет в наличии';
     card.appendChild(status);
 
-    // --- БЛОК КНОПКИ ИЛИ СЧЕТЧИКА ---
     const actionContainer = document.createElement('div');
-    actionContainer.style.marginTop = 'auto'; // прижимаем к низу
+    actionContainer.style.marginTop = 'auto';
 
     if (!product.isAvailable) {
         const button = document.createElement('button');
@@ -138,10 +142,8 @@ function createProductCard(product) {
         button.disabled = true;
         actionContainer.appendChild(button);
     } else if (cartItem) {
-        // Если товар уже в корзине - показываем счетчик
         actionContainer.appendChild(createQuantityControl(product, cartItem.quantity));
     } else {
-        // Если товара нет в корзине - показываем кнопку
         const button = document.createElement('button');
         button.classList.add('button', 'button--primary', 'product-card__button');
         button.type = 'button';
@@ -155,7 +157,6 @@ function createProductCard(product) {
     return card;
 }
 
-// Функция создания счетчика
 function createQuantityControl(product, quantity) {
     const control = document.createElement('div');
     control.classList.add('quantity-control');
@@ -180,7 +181,6 @@ function createQuantityControl(product, quantity) {
     return control;
 }
 
-// === Рендер каталога ===
 function renderProducts(productsToRender) {
     if (!productsContainer) return;
 
@@ -200,13 +200,11 @@ function renderProducts(productsToRender) {
     });
 }
 
-// === Обновление каталога ===
 function updateCatalog() {
     const preparedProducts = getPreparedProducts(products, catalogState);
     renderProducts(preparedProducts);
 }
 
-// === Обработчики поиска, фильтра, сортировки ===
 if (searchInput) {
     searchInput.addEventListener('input', (event) => {
         catalogState.query = event.target.value;
@@ -218,6 +216,24 @@ if (categoryFilter) {
     categoryFilter.addEventListener('change', (event) => {
         catalogState.category = event.target.value;
         updateCatalog();
+    });
+}
+const priceForm = document.querySelector('.filters-form');
+const priceFromInput = document.getElementById('price-from');
+const priceToInput = document.getElementById('price-to');
+
+if (priceForm) {
+    priceForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const fromValue = Number(priceFromInput.value) || 0;
+        const toValue = Number(priceToInput.value) || Infinity;
+
+        const filtered = products.filter(product => {
+            return product.price >= fromValue && product.price <= toValue;
+        });
+
+        renderProducts(filtered);
     });
 }
 
@@ -256,21 +272,42 @@ if (productsContainer) {
             if (existingIndex > -1) {
                 cart[existingIndex].quantity -= 1;
                 if (cart[existingIndex].quantity <= 0) {
-                    cart.splice(existingIndex, 1); // Удаляем, если 0
+                    cart.splice(existingIndex, 1);
                 }
             }
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCounter(); // Обновляем цифру в шапке
-        updateCatalog(); // Перерисовываем каталог, чтобы обновились кнопки
+        updateCartCounter();
+        updateCatalog();
     });
 }
 
-// === Первичный вывод ===
 if (productsContainer) {
     updateCatalog();
 }
+const categoryCheckboxes = document.querySelectorAll('input[name="category"]');
+const filterForm = document.querySelector('.filters-form');
 
-// === Обновить счётчик при загрузке ===
+if (filterForm) {
+    filterForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+        catalogState.badges = selectedCategories;
+
+        catalogState.priceMin = Number(document.getElementById('price-from').value) || 0;
+        catalogState.priceMax = Number(document.getElementById('price-to').value) || Infinity;
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (event) => {
+                catalogState.sort = event.target.value;
+                updateCatalog();
+            });
+        }
+
+        updateCatalog();
+    });
+}
 updateCartCounter();

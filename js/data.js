@@ -25,7 +25,8 @@ const products = [
         price: 2800,
         category: "clothing",
         isAvailable: true,
-        image: "https://i.pinimg.com/736x/95/00/9e/95009e199695715c8337fee26b626e50.jpg"
+        image: "https://i.pinimg.com/736x/95/00/9e/95009e199695715c8337fee26b626e50.jpg",
+        badge: "Хит"
     },
     {
         id: 4,
@@ -53,7 +54,8 @@ const products = [
         price: 5000,
         category: "outerwear",
         isAvailable: true,
-        image: "https://i.pinimg.com/1200x/1d/09/47/1d0947ab97d2355fcbc59749663b752e.jpg"
+        image: "https://i.pinimg.com/1200x/1d/09/47/1d0947ab97d2355fcbc59749663b752e.jpg",
+        badge: "Скидка"
     },
     {
         id: 7,
